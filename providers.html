@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Name & Gender List</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 30px;
+    }
+    table {
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 800px;
+    }
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px 12px;
+      text-align: left;
+    }
+    button {
+      padding: 5px 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Provider Gender Directory</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>#</th>
+        <th>Name</th>
+        <th>Gender</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="data-table">
+    </tbody>
+  </table>
+
+  <script>
+    const data = [
+      { "name": "Dr. Aaron Lee Van Hooser", "gender": "male" },
+      { "name": "Dr. Adegbemisola Abike Daniyan", "gender": "female" },
+      { "name": "Dr. Alyssa Nicole Haley", "gender": "female" },
+      { "name": "Dr. Armen Choulakian", "gender": "male" },
+      { "name": "Dr. Byron Miguel Ingram", "gender": "male" },
+      { "name": "Dr. Jillian McAdams", "gender": "female" },
+      { "name": "Dr. Karan Thakkar", "gender": "male" },
+      { "name": "Dr. Karen Akosua Michelle Schooler", "gender": "female" },
+      { "name": "Dr. Kelly Lee Wu", "gender": "female" },
+      { "name": "Dr. Konstantine Sayaf", "gender": "male" },
+      { "name": "Dr. Kristine Susan Oleson", "gender": "female" },
+      { "name": "Dr. Lourdes Alanis", "gender": "female" },
+      { "name": "Dr. Mamie Sarpoma Sefa-Boakye", "gender": "female" },
+      { "name": "Dr. Michelle Arko Harden", "gender": "female" },
+      { "name": "Dr. Naomi Lawrence-Reid", "gender": "female" },
+      { "name": "Dr. Nicole Danielle Hurst", "gender": "female" },
+      { "name": "Dr. Robin Dayanna Collin", "gender": "female" },
+      { "name": "Dr. Sarah Rose Severino", "gender": "female" },
+      { "name": "Dr. Sirish Kumar Kondabolu", "gender": "male" },
+      { "name": "Dr. Timothy Derrick Do", "gender": "male" },
+      { "name": "Dr. Toya Hester Kelley", "gender": "female" },
+      { "name": "Dr. Val Bellman", "gender": "male" },
+      { "name": "NP Alfredo Madrid, Jr.", "gender": "male" },
+      { "name": "NP Amonica Shanay Mitchell", "gender": "female" },
+      { "name": "NP Amy Lynn Schwentker", "gender": "female" },
+      { "name": "NP Andrea Cristine Flynn", "gender": "female" },
+      { "name": "NP Andrea Kaye Lewis", "gender": "female" },
+      { "name": "NP Andrelyn Calalang Almario", "gender": "female" },
+      { "name": "NP Angela Marie Bidlack", "gender": "female" },
+      { "name": "NP Anna Malone Nixon", "gender": "female" },
+      { "name": "NP Annita Mae Cline", "gender": "female" },
+      { "name": "NP Ashley Ann Stewart", "gender": "female" },
+      { "name": "NP Athena Jo Dahlin Cross", "gender": "female" },
+      { "name": "NP Aurora Nichole Apodaca", "gender": "female" },
+      { "name": "NP Bassey Ulo Enyenihi", "gender": "male" },
+      { "name": "NP Betty Matugas Bowen", "gender": "female" },
+      { "name": "NP Brettney Lashay Williams", "gender": "female" },
+      { "name": "NP Bridgette  Lashon Vaughn", "gender": "female" },
+      { "name": "NP Britney Michelle Jackson", "gender": "female" },
+      { "name": "NP Carmela Laurinaria Flores", "gender": "female" },
+      { "name": "NP Chioma Ohiri Tawose", "gender": "female" },
+      { "name": "NP Cinthia Berenice Gomez", "gender": "female" },
+      { "name": "NP Cinthya Paola Cruz", "gender": "female" },
+      { "name": "NP Debra Lynn Ballares", "gender": "female" },
+      { "name": "NP Dennis Vince Cruz Deguzman", "gender": "male" },
+      { "name": "NP Diana Kathleen Eastridge", "gender": "female" },
+      { "name": "NP Diane Marie Zier", "gender": "female" },
+      { "name": "NP Ebony Nicole Midcalf", "gender": "female" },
+      { "name": "NP Emily McRee", "gender": "female" },
+      { "name": "NP Gertrude Owusu Afriyie Frimpong", "gender": "female" },
+      { "name": "NP Hans Beliard", "gender": "male" },
+      { "name": "NP Issel McKenzie-Rick", "gender": "female" },
+      { "name": "NP Jazmin Velez Vasquez", "gender": "female" },
+      { "name": "NP Jennifer Ann McGrath", "gender": "female" },
+      { "name": "NP Jennifer Ann Skinner", "gender": "female" },
+      { "name": "NP Jessica Shajuan Lea-Leonard", "gender": "female" },
+      { "name": "NP Joy Joohee Park", "gender": "female" },
+      { "name": "NP Joyce Reginah Wanjiru-Ndungu", "gender": "female" },
+      { "name": "NP Justina Nnedimma Ibe", "gender": "female" },
+      { "name": "NP Kathleen Parilla Mitchell", "gender": "female" },
+      { "name": "NP Kathryn Marie Breazeale Pozzi", "gender": "female" },
+      { "name": "NP Kenneth Charles Agnew Jr.", "gender": "male" },
+      { "name": "NP Kimberlei Renee Sapp", "gender": "female" },
+      { "name": "NP Krista Marie Bohn", "gender": "female" },
+      { "name": "NP Lauren Jean Kelly Danahy", "gender": "female" },
+      { "name": "NP Laurence Carlie Leumalieu", "gender": "female" },
+      { "name": "NP Lisa Dawn Spence", "gender": "female" },
+      { "name": "NP Lysianne Pham-Dube", "gender": "female" },
+      { "name": "NP Marcia Katonya Roberts-Morris", "gender": "female" },
+      { "name": "NP Maria Cardenas", "gender": "female" },
+      { "name": "NP Mary Jackson-Paradis", "gender": "female" },
+      { "name": "NP Meredith Lizotte-Rubado", "gender": "female" },
+      { "name": "NP Micole Andreia Lafforgue", "gender": "female" },
+      { "name": "NP Nateka Austin", "gender": "female" },
+      { "name": "NP Necha Shani Matthews", "gender": "female" },
+      { "name": "NP Nicole Lynne Johnson", "gender": "female" },
+      { "name": "NP Patricia Christine Hannah", "gender": "female" },
+      { "name": "NP Peter Paul Carreon", "gender": "male" },
+      { "name": "NP Rebekah Lynn Kube", "gender": "female" },
+      { "name": "NP Rhonda Osborne Thomas", "gender": "female" },
+      { "name": "NP Rodney Posely", "gender": "male" },
+      { "name": "NP Samantha Elizabeth Amos", "gender": "female" },
+      { "name": "NP Sarah Anne O’Hara", "gender": "female" },
+      { "name": "NP Soonmi Kim", "gender": "female" },
+      { "name": "NP Tania Parhami", "gender": "female" },
+      { "name": "NP Tara Shaw", "gender": "female" },
+      { "name": "NP Tinuola Oladipo-Adejumo", "gender": "female" },
+      { "name": "NP Tomika Marie Dedeaux", "gender": "female" },
+      { "name": "NP Wilantha Roell Silva", "gender": "female" },
+      { "name": "NP Wytoshery Monea Williams", "gender": "female" },
+      { "name": "PA Chibuikem Kenneth Okoro", "gender": "male" },
+      { "name": "PA Gretchen Elizabeth Szal", "gender": "female" },
+      { "name": "PA Jason Stephen Caldwell", "gender": "male" },
+      { "name": "PA Jessica Sharon Elizabeth Nichols", "gender": "female" },
+      { "name": "PA Joseph Nunokawa", "gender": "male" },
+      { "name": "PA Karen Julyssa Olivero", "gender": "female" },
+      { "name": "PA Katy Frances DiBene", "gender": "female" },
+      { "name": "PA Mia Taino", "gender": "female" },
+      { "name": "PA Michael Louis Pivato", "gender": "male" },
+      { "name": "PA Nawal Naser Khawaja", "gender": "female" },
+      { "name": "PA Nina Yvette Olvera", "gender": "female" },
+      { "name": "PA Pearl Lynn Olvera-Hunter", "gender": "female" },
+      { "name": "PA Peter George Saad", "gender": "male" },
+      { "name": "PA Robyn Lyndsay Mason", "gender": "female" },
+      { "name": "PA Steven Luis Hauswirth", "gender": "male" },
+      { "name": "PA Yusrah Haitham Al-Deek", "gender": "female" }
+    ]
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const table = document.getElementById("data-table");
+
+      data.forEach((person, index) => {
+        const row = document.createElement("tr");
+
+        row.innerHTML = `
+          <td>${index + 1}</td>
+          <td>${person.name}</td>
+          <td id="gender-${index}">•••••••</td>
+          <td>
+            <button id="btn-${index}" onclick="toggleGender(${index}, '${person.gender}')">
+              Show Gender
+            </button>
+          </td>
+        `;
+
+        table.appendChild(row);
+      });
+    });
+
+    function toggleGender(index, gender) {
+      const genderCell = document.getElementById(`gender-${index}`);
+      const button = document.getElementById(`btn-${index}`);
+
+      if (genderCell.textContent === '•••••••') {
+        genderCell.textContent = gender;
+        button.textContent = 'Hide Gender';
+      } else {
+        genderCell.textContent = '•••••••';
+        button.textContent = 'Show Gender';
+      }
+    }
+  </script>
+
+</body>
+</html>
